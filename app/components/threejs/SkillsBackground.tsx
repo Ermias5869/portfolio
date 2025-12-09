@@ -1,57 +1,59 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Environment, Stars } from "@react-three/drei";
-import {
-  EffectComposer,
-  Bloom,
-  ChromaticAberration,
-} from "@react-three/postprocessing";
-import { BlendFunction, KernelSize } from "postprocessing";
-import { Suspense } from "react";
-import CodeBackground from "./CodeBackground";
+import { OrbitControls, Environment } from "@react-three/drei";
+import { Suspense, useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+
+// Dynamically import CodeBackground
+const CodeBackground = dynamic(() => import("./CodeBackground"), {
+  ssr: false,
+  loading: () => null,
+});
 
 export default function SkillsBackground() {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return (
+      <div className="fixed inset-0 -z-10 bg-gradient-to-br from-gray-900 to-black" />
+    );
+  }
+
   return (
-    <div className="fixed inset-0 -z-10 pointer-events-none">
+    <div className="fixed inset-0 -z-10">
       <Canvas
-        camera={{ position: [0, 0, 35], fov: 60 }}
+        camera={{ position: [0, 0, 45], fov: 65 }}
         style={{
           background: "linear-gradient(135deg, #0a0a0a 0%, #1e1b4b 100%)",
         }}
       >
-        <color attach="background" args={["#0a0a0a"]} />
-
         <Suspense fallback={null}>
           <CodeBackground />
           <Environment preset="city" />
-          <Stars radius={100} depth={50} count={2000} factor={4} />
 
           <OrbitControls
             enableZoom={true}
-            enablePan={false}
-            autoRotate
-            autoRotateSpeed={0.2}
+            enablePan={true}
+            autoRotate={true}
+            autoRotateSpeed={0.3}
+            enableDamping={true}
+            dampingFactor={0.05}
             maxPolarAngle={Math.PI}
             minPolarAngle={0}
-            minDistance={20}
-            maxDistance={50}
+            minDistance={25}
+            maxDistance={80}
+            rotateSpeed={0.5}
           />
-
-          <EffectComposer>
-            <Bloom
-              intensity={1.2}
-              kernelSize={KernelSize.LARGE}
-              luminanceThreshold={0.8}
-              luminanceSmoothing={0.025}
-            />
-            <ChromaticAberration
-              blendFunction={BlendFunction.NORMAL}
-              offset={[0.002, 0.002]}
-            />
-          </EffectComposer>
         </Suspense>
       </Canvas>
+
+      {/* Overlay gradient */}
+      <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 via-transparent to-transparent pointer-events-none" />
     </div>
   );
 }

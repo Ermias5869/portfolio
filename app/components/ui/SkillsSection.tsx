@@ -137,34 +137,45 @@ const capabilities = [
 export default function SkillsSection() {
   const [hoveredTech, setHoveredTech] = useState<string | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isClient, setIsClient] = useState(false);
 
+  // Check if we're on the client side
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Handle mouse movement only on client side
+  useEffect(() => {
+    if (!isClient) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+  }, [isClient]);
 
-  // Calculate parallax effect
-  const parallaxX = mousePosition.x / window.innerWidth;
-  const parallaxY = mousePosition.y / window.innerHeight;
+  // Calculate parallax effect only on client side
+  const parallaxX = isClient ? mousePosition.x / window.innerWidth : 0.5;
+  const parallaxY = isClient ? mousePosition.y / window.innerHeight : 0.5;
 
   return (
     <section className="py-20 relative overflow-hidden min-h-screen">
       {/* Three.js Code Background */}
-      <SkillsBackground />
+      {isClient && <SkillsBackground />}
 
-      {/* Parallax overlay elements */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `radial-gradient(circle at ${parallaxX * 100}% ${
-            parallaxY * 100
-          }%, rgba(6, 182, 212, 0.1) 0%, transparent 50%)`,
-        }}
-      />
+      {/* Parallax overlay elements - only render on client */}
+      {isClient && (
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: `radial-gradient(circle at ${parallaxX * 100}% ${
+              parallaxY * 100
+            }%, rgba(6, 182, 212, 0.1) 0%, transparent 50%)`,
+          }}
+        />
+      )}
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Header with typing effect */}
@@ -200,19 +211,23 @@ export default function SkillsSection() {
         </motion.div>
 
         {/* Interactive floating tech indicators */}
-        <div className="absolute top-1/4 left-1/4 pointer-events-none">
-          <div className="flex flex-col items-center gap-2 glass p-4 rounded-2xl opacity-80">
-            <Code className="w-6 h-6 text-cyan-400" />
-            <span className="text-sm text-gray-300">Frontend</span>
-          </div>
-        </div>
+        {isClient && (
+          <>
+            <div className="absolute top-1/4 left-1/4 pointer-events-none">
+              <div className="flex flex-col items-center gap-2 glass p-4 rounded-2xl opacity-80">
+                <Code className="w-6 h-6 text-cyan-400" />
+                <span className="text-sm text-gray-300">Frontend</span>
+              </div>
+            </div>
 
-        <div className="absolute top-1/4 right-1/4 pointer-events-none">
-          <div className="flex flex-col items-center gap-2 glass p-4 rounded-2xl opacity-80">
-            <Server className="w-6 h-6 text-green-400" />
-            <span className="text-sm text-gray-300">Backend</span>
-          </div>
-        </div>
+            <div className="absolute top-1/4 right-1/4 pointer-events-none">
+              <div className="flex flex-col items-center gap-2 glass p-4 rounded-2xl opacity-80">
+                <Server className="w-6 h-6 text-green-400" />
+                <span className="text-sm text-gray-300">Backend</span>
+              </div>
+            </div>
+          </>
+        )}
 
         {/* Skills Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
