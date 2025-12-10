@@ -1,7 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, Mouse, ChevronDown } from "lucide-react";
+import {
+  ArrowRight,
+  Sparkles,
+  Mouse,
+  ChevronDown,
+  Users,
+  Code2,
+} from "lucide-react";
 import { TypeAnimation } from "react-type-animation";
 
 export default function HeroSection() {
@@ -32,9 +39,8 @@ export default function HeroSection() {
             transition={{ delay: 0.2 }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8"
           >
-            <Sparkles className="w-4 h-4 text-cyan-400" />
-            <span className="text-sm font-medium bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-              Top 1% Developer
+            <span className="text-sm font-medium bg-gradient-to-r from-cyan-400 to-white bg-clip-text text-transparent">
+              Full-stack Developer
             </span>
           </motion.div>
 
@@ -73,16 +79,9 @@ export default function HeroSection() {
             className="text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed"
           >
             Building the future with{" "}
+            <span className=" font-semibold">cutting-edge technology</span>,
+            <span className=" font-semibold"> immersive experiences</span>, and
             <span className="text-cyan-400 font-semibold">
-              cutting-edge technology
-            </span>
-            ,
-            <span className="text-purple-400 font-semibold">
-              {" "}
-              immersive experiences
-            </span>
-            , and
-            <span className="text-pink-400 font-semibold">
               {" "}
               pixel-perfect design
             </span>
@@ -100,7 +99,7 @@ export default function HeroSection() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => scrollToSection("projects")}
-              className="group px-8 py-4 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-semibold text-lg flex items-center gap-3 hover:shadow-2xl hover:shadow-cyan-500/30 transition-all duration-300"
+              className="group px-8 py-4 rounded-full bg-gradient-to-r from-cyan-500  text-white font-semibold text-lg flex items-center gap-3 hover:shadow-2xl hover:shadow-cyan-500/30 transition-all duration-300"
             >
               View My Work
               <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
@@ -109,34 +108,15 @@ export default function HeroSection() {
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              href="/resume.pdf"
+              href="/resume.pdf" // ← This points to /public/resume.pdf
+              download="ermias_amare_cv.pdf" // ← File name when downloaded
               className="px-8 py-4 rounded-full glass text-white font-semibold text-lg hover:bg-white/10 transition-all duration-300"
             >
               Download CV
             </motion.a>
           </motion.div>
 
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-4xl mx-auto"
-          >
-            {[
-              { value: "50+", label: "Projects" },
-              { value: "5+", label: "Years Experience" },
-              { value: "100%", label: "Client Satisfaction" },
-              { value: "24/7", label: "Availability" },
-            ].map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-gray-400 text-sm">{stat.label}</div>
-              </div>
-            ))}
-          </motion.div>
+          {/* free time */}
         </motion.div>
       </div>
 
