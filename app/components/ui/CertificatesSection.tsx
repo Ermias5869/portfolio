@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import {
   Award,
@@ -90,8 +90,8 @@ export default function CertificatesSection() {
     setIsClient(true);
   }, []);
 
-  // Animation variants
-  const containerVariants = {
+  // Animation variants with proper TypeScript typing
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -102,7 +102,7 @@ export default function CertificatesSection() {
     },
   };
 
-  const cardVariants = {
+  const cardVariants: Variants = {
     hidden: { opacity: 0, y: 50, scale: 0.9 },
     visible: {
       opacity: 1,
@@ -125,7 +125,7 @@ export default function CertificatesSection() {
     },
   };
 
-  const badgeVariants = {
+  const badgeVariants: Variants = {
     hidden: { scale: 0, rotate: -180 },
     visible: {
       scale: 1,
@@ -219,7 +219,7 @@ export default function CertificatesSection() {
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass mb-6"
             >
               <Sparkles className="w-5 h-5 text-cyan-400" />
-              <span className="text-sm font-medium bg-gradient-to-r from-cyan-400 bg-clip-text text-transparent">
+              <span className="text-sm font-medium bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
                 Certificates & Awards
               </span>
             </motion.div>
@@ -229,8 +229,14 @@ export default function CertificatesSection() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ type: "spring", stiffness: 200 }}
-              className="text-5xl md:text-7xl font-bold mb-6"
-            ></motion.h2>
+              className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-cyan-400 via-white to-blue-400 bg-clip-text text-transparent"
+            >
+              My Achievements
+            </motion.h2>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              Recognized certifications and awards that validate my expertise in
+              modern web technologies
+            </p>
           </motion.div>
 
           {/* Certificates Grid */}
@@ -241,7 +247,7 @@ export default function CertificatesSection() {
             viewport={{ once: true }}
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {certificates.map((cert, index) => (
+            {certificates.map((cert) => (
               <motion.div
                 key={cert.id}
                 variants={cardVariants}
@@ -302,7 +308,7 @@ export default function CertificatesSection() {
                   {/* Content */}
                   <div className="p-6 flex-1 flex flex-col">
                     <div className="flex-1">
-                      <h3 className="text-2xl font-bold text-white group-hover:text-gradient transition-all duration-300 mb-3">
+                      <h3 className="text-2xl font-bold text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:to-blue-400 group-hover:bg-clip-text transition-all duration-300 mb-3">
                         {cert.title}
                       </h3>
 
@@ -372,7 +378,7 @@ export default function CertificatesSection() {
                         whileHover={{ scale: 1.05, x: 5 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => openCertificate(cert)}
-                        className="flex items-center gap-2 text-sm font-medium bg-gradient-to-r from-cyan-500 bg-clip-text text-transparent hover:gap-3 transition-all duration-300"
+                        className="flex items-center gap-2 text-sm font-medium bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent hover:gap-3 transition-all duration-300"
                       >
                         View Full
                         <ArrowRight className="w-4 h-4" />

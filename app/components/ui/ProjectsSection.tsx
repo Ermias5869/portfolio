@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import {
   ExternalLink,
   Github,
@@ -165,8 +165,8 @@ export default function ProjectsSection() {
   >(null);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
-  // Animation variants
-  const containerVariants = {
+  // Animation variants with proper TypeScript typing
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -177,7 +177,7 @@ export default function ProjectsSection() {
     },
   };
 
-  const cardVariants = {
+  const cardVariants: Variants = {
     hidden: { opacity: 0, y: 50, scale: 0.9 },
     visible: {
       opacity: 1,
@@ -200,7 +200,7 @@ export default function ProjectsSection() {
     },
   };
 
-  const badgeVariants = {
+  const badgeVariants: Variants = {
     hidden: { scale: 0, rotate: -180 },
     visible: {
       scale: 1,
@@ -236,7 +236,7 @@ export default function ProjectsSection() {
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass mb-6"
           >
             <Sparkles className="w-5 h-5 text-cyan-400" />
-            <span className="text-sm font-medium bg-gradient-to-r from-cyan-400  bg-clip-text text-transparent">
+            <span className="text-sm font-medium bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
               My Projects
             </span>
           </motion.div>
@@ -249,7 +249,9 @@ export default function ProjectsSection() {
             className="text-5xl md:text-7xl font-bold mb-6"
           >
             <span className="text-white">Real</span>{" "}
-            <span className="text-gradient">Projects</span>
+            <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+              Projects
+            </span>
           </motion.h2>
 
           <motion.p
@@ -264,12 +266,10 @@ export default function ProjectsSection() {
               modern technologies
             </span>{" "}
             and{" "}
-            <span className=" text-cyan-400 font-semibold">
+            <span className="text-cyan-400 font-semibold">
               real-world impact
             </span>
           </motion.p>
-
-          {/* Animated Stats */}
         </motion.div>
 
         {/* Projects Grid with Image Display */}
@@ -281,7 +281,7 @@ export default function ProjectsSection() {
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           <AnimatePresence>
-            {projects.map((project, index) => (
+            {projects.map((project) => (
               <motion.div
                 key={project.id}
                 variants={cardVariants}
@@ -323,7 +323,7 @@ export default function ProjectsSection() {
                       <div
                         className={cn(
                           "px-3 py-1 rounded-full text-xs font-bold text-white shadow-lg",
-                          `bg-gradient-to-r text-${project.color}`
+                          `bg-gradient-to-r ${project.color}`
                         )}
                       >
                         {project.badge}
@@ -334,7 +334,7 @@ export default function ProjectsSection() {
                   {/* Content */}
                   <div className="p-6 flex-1 flex flex-col">
                     <div className="flex-1">
-                      <h3 className="text-2xl font-bold text-white group-hover:text-gradient transition-all duration-300 mb-3">
+                      <h3 className="text-2xl font-bold text-white group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:to-blue-400 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300 mb-3">
                         {project.title}
                       </h3>
 
@@ -385,7 +385,7 @@ export default function ProjectsSection() {
                           rel="noopener noreferrer"
                           className="p-2 rounded-lg hover:bg-white/10 transition-colors"
                         >
-                          <Github className="w-5 h-5" />
+                          <Github className="w-5 h-5 text-gray-300 hover:text-white" />
                         </motion.a>
                         <motion.a
                           whileHover={{ scale: 1.1 }}
@@ -395,7 +395,7 @@ export default function ProjectsSection() {
                           rel="noopener noreferrer"
                           className="p-2 rounded-lg hover:bg-white/10 transition-colors"
                         >
-                          <ExternalLink className="w-5 h-5" />
+                          <ExternalLink className="w-5 h-5 text-gray-300 hover:text-white" />
                         </motion.a>
                       </div>
 
@@ -403,7 +403,7 @@ export default function ProjectsSection() {
                         whileHover={{ scale: 1.05, x: 5 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => setSelectedProject(project)}
-                        className="flex items-center gap-2 text-sm font-medium bg-gradient-to-r from-cyan-500 from-cyan-500 bg-clip-text text-transparent hover:gap-3 transition-all duration-300"
+                        className="flex items-center gap-2 text-sm font-medium bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent hover:gap-3 transition-all duration-300"
                       >
                         View Details
                         <ArrowRight className="w-4 h-4" />
@@ -478,11 +478,15 @@ export default function ProjectsSection() {
                   <div>
                     {/* Project Image */}
                     <div className="relative h-48 w-full rounded-xl overflow-hidden mb-4">
-                      <img
-                        src={selectedProject.image}
-                        alt={selectedProject.title}
-                        className="object-cover w-full h-full"
-                      />
+                      <div className="relative w-full h-full">
+                        <Image
+                          src={selectedProject.image}
+                          alt={selectedProject.title}
+                          fill
+                          className="object-cover"
+                          sizes="100vw"
+                        />
+                      </div>
                     </div>
 
                     <h4 className="text-lg font-semibold text-white mb-2">
@@ -541,7 +545,7 @@ export default function ProjectsSection() {
                           href={selectedProject.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-2 rounded-xl glass flex items-center gap-2 hover:bg-white/10 transition-colors text-sm"
+                          className="p-2 rounded-xl glass flex items-center gap-2 hover:bg-white/10 transition-colors text-sm text-white"
                         >
                           <Github className="w-4 h-4" /> GitHub
                         </a>
@@ -549,7 +553,7 @@ export default function ProjectsSection() {
                           href={selectedProject.live}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-2 rounded-xl glass flex items-center gap-2 hover:bg-white/10 transition-colors text-sm"
+                          className="p-2 rounded-xl glass flex items-center gap-2 hover:bg-white/10 transition-colors text-sm text-white"
                         >
                           <ExternalLink className="w-4 h-4" /> Live Demo
                         </a>
