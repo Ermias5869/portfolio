@@ -22,12 +22,17 @@ const navItems = [
   { label: "Projects", icon: Briefcase, href: "#projects" },
   { label: "Skills", icon: Code, href: "#skills" },
   { label: "Contact", icon: Mail, href: "#contact" },
+  { label: "Certificate", icon: Mail, href: "#certificate" },
 ];
 
 const socialLinks = [
-  { icon: Github, href: "https://github.com", label: "GitHub" },
-  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-  { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
+  { icon: Github, href: "https://github.com/Ermias5869", label: "GitHub" },
+  {
+    icon: Linkedin,
+    href: "https://www.linkedin.com/in/ermias-amare/",
+    label: "LinkedIn",
+  },
+  { icon: Twitter, href: "https://x.com/ermiasamar60715", label: "Twitter" },
 ];
 
 export default function Header() {
@@ -60,11 +65,11 @@ export default function Header() {
               whileHover={{ scale: 1.05 }}
               className="flex items-center gap-3"
             >
-              <div className="w-10 h-10 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 flex items-center justify-center">
-                <Code className="w-6 h-6 text-white" />
+              <div className="w-10 h-10 rounded-full bg-gradient-to-r from-cyan-500 flex items-center justify-center">
+                E
               </div>
               <span className="text-xl font-bold text-gradient">
-                DevPortfolio
+                ErmiasAmarePortfolio
               </span>
             </motion.a>
 
@@ -77,7 +82,6 @@ export default function Header() {
                   whileHover={{ y: -2 }}
                   className="flex items-center gap-2 px-4 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors"
                 >
-                  <item.icon className="w-4 h-4" />
                   {item.label}
                 </motion.a>
               ))}

@@ -60,11 +60,8 @@ export default function StatsSection() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            By The <span className="text-gradient">Numbers</span>
+            The <span className="text-gradient">Developer</span> Path
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            Real metrics from my journey — no exaggeration, just honest progress
-          </p>
         </motion.div>
 
         <motion.div
@@ -101,24 +98,6 @@ export default function StatsSection() {
               </div>
             </motion.div>
           ))}
-        </motion.div>
-
-        {/* Humble footer note */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.6 }}
-          className="mt-12 text-center"
-        >
-          <div className="inline-block glass rounded-full px-6 py-3">
-            <p className="text-sm text-gray-300">
-              <span className="text-cyan-400">Note:</span> These are real
-              numbers from my journey. I believe in{" "}
-              <span className="font-medium text-white">honest progress</span>{" "}
-              over exaggerated claims.
-            </p>
-          </div>
         </motion.div>
       </div>
     </section>

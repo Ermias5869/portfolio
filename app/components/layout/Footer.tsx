@@ -11,10 +11,14 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { icon: Github, href: "https://github.com", label: "GitHub" },
-  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-  { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
-  { icon: Mail, href: "mailto:hello@devportfolio.com", label: "Email" },
+  { icon: Github, href: "https://github.com/Ermias5869", label: "GitHub" },
+  {
+    icon: Linkedin,
+    href: "https://www.linkedin.com/in/ermias-amare/",
+    label: "LinkedIn",
+  },
+  { icon: Twitter, href: "https://x.com/ermiasamar60715", label: "Twitter" },
+  { icon: Mail, href: "mailto:ermiasamare58@gmail.com", label: "Email" },
 ];
 
 export default function Footer() {
@@ -33,11 +37,11 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 flex items-center justify-center">
-                <span className="text-white font-bold text-xl">D</span>
+              <div className="w-10 h-10 rounded-full bg-gradient-to-r from-cyan-500  flex items-center justify-center">
+                <span className="text-white font-bold text-xl">E</span>
               </div>
               <span className="text-xl font-bold text-gradient">
-                DevPortfolio
+                ErmiasAmarePortfolio
               </span>
             </div>
 
@@ -106,7 +110,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-gray-400 text-sm flex items-center gap-2">
-            © {new Date().getFullYear()} DevPortfolio. All rights reserved.
+            © {new Date().getFullYear()} All rights reserved.
             <span className="hidden md:inline">•</span>
             <span className="flex items-center gap-1">
               Made with <Heart className="w-4 h-4 text-red-500 fill-red-500" />{" "}

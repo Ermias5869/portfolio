@@ -43,19 +43,19 @@ export default function ContactSection() {
     {
       icon: Mail,
       title: "Email",
-      value: "hello@devportfolio.com",
-      href: "mailto:hello@devportfolio.com",
+      value: "ermiasamare58@gmail.com",
+      href: "mailto:ermiasamare58@gmail.com.com",
     },
     {
       icon: Phone,
       title: "Phone",
-      value: "+1 (555) 123-4567",
-      href: "tel:+15551234567",
+      value: "+251 989 85-3080",
+      href: "tel:+25198985308",
     },
     {
       icon: MapPin,
       title: "Location",
-      value: "San Francisco, CA",
+      value: "Bahirdar,Ethiopia",
       href: "#",
     },
   ];
@@ -177,7 +177,7 @@ export default function ContactSection() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-semibold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500  text-white font-semibold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isSubmitting ? (
                         <>
@@ -220,7 +220,7 @@ export default function ContactSection() {
                     transition={{ delay: index * 0.1 }}
                     className="flex items-center gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors group"
                   >
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-cyan-500 to-purple-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-cyan-500  flex items-center justify-center group-hover:scale-110 transition-transform">
                       <info.icon className="w-6 h-6 text-white" />
                     </div>
                     <div>

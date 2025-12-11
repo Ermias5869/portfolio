@@ -4,6 +4,7 @@ import ProjectsSection from "@/app/components/ui/ProjectsSection";
 import SkillsSection from "@/app/components/ui/SkillsSection";
 import ContactSection from "@/app/components/ui/ContactSection";
 import StatsSection from "@/app/components/ui/StatsSection";
+import CertificatesSection from "./components/ui/CertificatesSection";
 
 export default function Home() {
   return (
@@ -24,6 +25,9 @@ export default function Home() {
 
       <section id="skills">
         <SkillsSection />
+      </section>
+      <section id="certificate">
+        <CertificatesSection />
       </section>
 
       <section id="contact">
