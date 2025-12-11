@@ -216,3 +216,17 @@ body {
   z-index: 9999;
   pointer-events: none;
 }
+@media screen and (min-width: 768px) {
+  html {
+    transform: scale(0.985);
+    transform-origin: top left;
+    width: 101.52%; /* Compensate for scaling: 100 / 0.985 = 101.52% */
+    height: 101.52vh;
+    overflow-x: hidden;
+  }
+
+  body {
+    width: 100%;
+    height: 100%;
+  }
+}
