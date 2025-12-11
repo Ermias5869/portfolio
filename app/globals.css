@@ -216,15 +216,3 @@ body {
   z-index: 9999;
   pointer-events: none;
 }
-html {
-  transform: scale(0.75);
-  transform-origin: top center;
-  width: 133.33%; /* Compensate for scaling */
-  overflow-x: hidden;
-}
-
-body {
-  width: 100%;
-  min-height: 100vh;
-  transform: scale(1); /* Reset for body */
-}
