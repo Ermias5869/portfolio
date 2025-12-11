@@ -406,22 +406,22 @@ function LogoPlane({ logo, index, texture }: any) {
         position={[0, 0, 3]}
       />
 
-      {/* Trail particles */}
+      {/* Trail particles - FIXED */}
       <points>
         <bufferGeometry>
           <bufferAttribute
             attach="attributes-position"
-            count={10}
-            array={
+            args={[
               new Float32Array(
                 Array.from({ length: 30 }).flatMap((_, i) => [
                   (Math.random() - 0.5) * 0.5,
                   (Math.random() - 0.5) * 0.5,
                   -Math.random() * 0.5,
                 ])
-              )
-            }
-            itemSize={3}
+              ),
+              3,
+            ]}
+            count={10}
           />
         </bufferGeometry>
         <pointsMaterial
@@ -503,15 +503,13 @@ function BackgroundParticles() {
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
+          args={[particles.positions, 3]}
           count={count}
-          array={particles.positions}
-          itemSize={3}
         />
         <bufferAttribute
           attach="attributes-color"
+          args={[particles.colors, 3]}
           count={count}
-          array={particles.colors}
-          itemSize={3}
         />
       </bufferGeometry>
       <pointsMaterial
@@ -546,8 +544,7 @@ function ConnectionLines() {
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
-          count={200}
-          array={
+          args={[
             new Float32Array(
               Array.from({ length: 200 }).flatMap(() => [
                 (Math.random() - 0.5) * 80,
@@ -557,9 +554,10 @@ function ConnectionLines() {
                 (Math.random() - 0.5) * 50,
                 (Math.random() - 0.5) * 80,
               ])
-            )
-          }
-          itemSize={3}
+            ),
+            3,
+          ]}
+          count={200}
         />
       </bufferGeometry>
       <lineBasicMaterial
